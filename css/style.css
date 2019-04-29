@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css?family=Abel');
+
+body {
+  font-family: 'Abel', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url(../image/miui-8-2560x1440-weather-background-minimal-hd-10470.png);
+  background-size: cover;
+}
+
+.choice-city-form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 150px;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  top: 29%;
+  left: 19%;
+  color: #304246;
+  font-size: 30px;
+}
+
+.choice-city-form__button {
+  width: 150px;
+  height: 40px;
+  border-radius: 7px;
+  font-size: 18px;
+  background-color: #f3bfb1;
+  color: #304246;
+}
+
+.choice-city-form__button:active {
+  font-size: 17px;
+}
+
+.main {
+  width: 100%;
+  height: 100vh;
+}
+
+.results__container {
+  width: 560px;
+  height: 340px;
+  background-color: #73daf1d4;
+  position: absolute;
+  left: 52%;
+  top: 23%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 7px;
+  color: #304246;
+  font-size: 25px;
+}
+
+#choice-city-form__input {
+  width: 210px;
+  height: 28px;
+  border-radius: 7px;
+  background-color: #b5f2ff;
+  font-size: 20px;
+  color: #304246;
+}
+
+.condition {
+  display: flex;
+  justify-content: space-around;
+  width: 250px;
+  align-items: center;
+}
