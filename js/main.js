@@ -1,4 +1,4 @@
-const URL = 'http://api.apixu.com/v1/current.json?key=c9bf02c8667a4e998ad205818192304&q=';
+const URL = 'http://api.apixu.com/v1/current.json?key=502e6d2bb7fc49b7b55164834192904&q=';
 const choiceCityForm = document.querySelector('.choice-city-form');
 const buttonShowWeather = document.querySelector('.choice-city-form__button');
 let city;
