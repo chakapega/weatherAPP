@@ -25,10 +25,24 @@ body {
 .choice-city-form__button {
   width: 150px;
   height: 40px;
-  border-radius: 7px;
   font-size: 18px;
+}
+
+.btn {
   background-color: #f3bfb1;
   color: #304246;
+  border-radius: 7px;
+}
+
+.clear-button {
+  position: absolute;
+  left: 550px;
+  top: 263px;
+  font-size: 15px;
+}
+
+.clear-button:active {
+  font-size: 14px;
 }
 
 .choice-city-form__button:active {

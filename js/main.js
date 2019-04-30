@@ -5,6 +5,7 @@ let city;
 let allDataWeather;
 const choiceCityFormInput = document.querySelector('#choice-city-form__input');
 const main = document.querySelector('main');
+const clearButton = document.querySelector('.clear-button');
 
 const getWeather = () => {
 
@@ -169,6 +170,14 @@ choiceCityFormInput.addEventListener('blur' , function() {
   
   setTimeout(deletionProposedListOfCities, 200);
   
+});
+
+clearButton.addEventListener('click', function() {
+
+  deletionProposedListOfCities();
+  deletionResultsContainer();
+  choiceCityFormInput.value = "";
+
 });
 
 
