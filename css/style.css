@@ -16,8 +16,8 @@ body {
   justify-content: space-around;
   align-items: center;
   position: absolute;
-  top: 300px;
-  left: 300px;
+  top: 200px;
+  left: 280px;
   color: #304246;
   font-size: 30px;
 }
@@ -77,9 +77,15 @@ body {
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 400px;
-  left: 550px;
+  top: 300px;
+  left: 530px;
   background-color: #73daf1d4;
   font-size: 23px;
-  border-radius: 7px;
+  color: #304246;
+  height: 250px;
+  overflow: scroll;
+}
+
+.padding {
+  padding: 5px;
 }

@@ -113,7 +113,7 @@ const createProposedListOfCities = (arr) => {
 
   for(let i = 0; i < arr.length; i++) {
     const citySpan = document.createElement('span');
-    citySpan.classList.add('city-span' + i);
+    citySpan.classList.add('city-span' + i, 'padding');
     citySpan.textContent = arr[i].name;
     citiesListContainer.appendChild(citySpan);
   }
