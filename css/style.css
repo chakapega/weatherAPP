@@ -73,7 +73,7 @@ body {
   align-items: center;
 }
 
-.cities-list__container {
+.proposed-list-of-cities__container {
   display: flex;
   flex-direction: column;
   position: absolute;

@@ -100,46 +100,43 @@ const getCityNames = () => {
   req.open('GET', `${urlCity}` + choiceCityFormInput.value, false);
   req.send();
   let citiesList = JSON.parse(req.response);
-  console.log(citiesList);
+  
   return citiesList;
 
 };
 
-const createProposedListOfCities = (arr) => {
+const createProposedListOfCities = arr => {
 
-  const citiesListContainer = document.createElement('div');
+  const proposedListOfCities = document.createElement('div');
 
-  citiesListContainer.classList.add('cities-list__container');
+  proposedListOfCities.classList.add('proposed-list-of-cities__container');
 
   for(let i = 0; i < arr.length; i++) {
     const citySpan = document.createElement('span');
     citySpan.classList.add('city-span' + i, 'padding');
     citySpan.textContent = arr[i].name;
-    citiesListContainer.appendChild(citySpan);
+    proposedListOfCities.appendChild(citySpan);
   }
 
-  console.log(citiesListContainer);
-
-  main.appendChild(citiesListContainer);
+  return proposedListOfCities;
 
 };
 
 const deletionProposedListOfCities = () => {
 
   try {
-    document.querySelector('.cities-list__container').remove();
+    document.querySelector('.proposed-list-of-cities__container').remove();
   } catch {
 
   };
 
 };
 
-const showProposedListOfCities = () => {
+const showProposedListOfCities = element => {
 
-  
+  main.appendChild(element);
 
 };
-
 
 choiceCityForm.addEventListener('submit', e => {
   
@@ -149,18 +146,13 @@ choiceCityForm.addEventListener('submit', e => {
   
   getWeather();
 
-  
 });
-
-
-
 
 choiceCityFormInput.addEventListener('keyup' , function() {
   
   deletionProposedListOfCities();
-  createProposedListOfCities(getCityNames());
+  showProposedListOfCities(createProposedListOfCities(getCityNames()));
   
-
 });
 
 
