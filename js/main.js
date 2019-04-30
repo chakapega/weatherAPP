@@ -4,6 +4,7 @@ const buttonShowWeather = document.querySelector('.choice-city-form__button');
 let city;
 let allDataWeather;
 const choiceCityFormInput = document.querySelector('#choice-city-form__input');
+const main = document.querySelector('main');
 
 const getWeather = () => {
 
@@ -24,8 +25,6 @@ const getWeather = () => {
 };
 
 const showResults = () => {
-
-  const main = document.querySelector('main');
 
   createElemForResults();
 
@@ -121,7 +120,26 @@ const createProposedListOfCities = (arr) => {
 
   console.log(citiesListContainer);
 
-}
+  main.appendChild(citiesListContainer);
+
+};
+
+const deletionProposedListOfCities = () => {
+
+  try {
+    document.querySelector('.cities-list__container').remove();
+  } catch {
+
+  };
+
+};
+
+const showProposedListOfCities = () => {
+
+  
+
+};
+
 
 choiceCityForm.addEventListener('submit', e => {
   
@@ -139,7 +157,7 @@ choiceCityForm.addEventListener('submit', e => {
 
 choiceCityFormInput.addEventListener('keyup' , function() {
   
-
+  deletionProposedListOfCities();
   createProposedListOfCities(getCityNames());
   
 
