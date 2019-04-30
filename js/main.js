@@ -3,6 +3,7 @@ const choiceCityForm = document.querySelector('.choice-city-form');
 const buttonShowWeather = document.querySelector('.choice-city-form__button');
 let city;
 let allDataWeather;
+const choiceCityFormInput = document.querySelector('#choice-city-form__input');
 
 const getWeather = () => {
 
@@ -92,6 +93,36 @@ const deletionResultsContainer = () => {
 
 };
 
+const getCityNames = () => {
+  
+  const urlCity = 'http://api.apixu.com/v1/search.json?key=502e6d2bb7fc49b7b55164834192904&q=';
+
+  const req = new XMLHttpRequest();
+  req.open('GET', `${urlCity}` + choiceCityFormInput.value, false);
+  req.send();
+  let citiesList = JSON.parse(req.response);
+  console.log(citiesList);
+  return citiesList;
+
+};
+
+const createProposedListOfCities = (arr) => {
+
+  const citiesListContainer = document.createElement('div');
+
+  citiesListContainer.classList.add('cities-list__container');
+
+  for(let i = 0; i < arr.length; i++) {
+    const citySpan = document.createElement('span');
+    citySpan.classList.add('city-span' + i);
+    citySpan.textContent = arr[i].name;
+    citiesListContainer.appendChild(citySpan);
+  }
+
+  console.log(citiesListContainer);
+
+}
+
 choiceCityForm.addEventListener('submit', e => {
   
   e.preventDefault();
@@ -101,6 +132,17 @@ choiceCityForm.addEventListener('submit', e => {
   getWeather();
 
   
+});
+
+
+
+
+choiceCityFormInput.addEventListener('keyup' , function() {
+  
+
+  createProposedListOfCities(getCityNames());
+  
+
 });
 
 
