@@ -11,24 +11,22 @@ const getWeather = () => {
   const req = new XMLHttpRequest();
 
   req.open('GET', `${URL}` + city);
-  req.onreadystatechange = () => {
-    if(req.readyState === 4 && req.status === 200) {
-      allDataWeather = JSON.parse(req.response);
+  req.onload = () => {
 
-      deletionResultsContainer();
-      showResults();
-    };
+    allDataWeather = JSON.parse(req.response);
+
+    deletionResultsContainer();
+    showResults(createElemForResults());
+    
   };
 
   req.send();
 
 };
 
-const showResults = () => {
+const showResults = element => {
 
-  createElemForResults();
-
-  main.appendChild(createElemForResults());
+  main.appendChild(element);
 
 };
 
