@@ -161,7 +161,7 @@ choiceCityFormInput.addEventListener('keyup' , function() {
 
 choiceCityFormInput.addEventListener('blur' , function() {
   
-  deletionProposedListOfCities();
+  setTimeout(deletionProposedListOfCities, 250);
   
 });
 
