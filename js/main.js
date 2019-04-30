@@ -115,6 +115,10 @@ const createProposedListOfCities = arr => {
     const citySpan = document.createElement('span');
     citySpan.classList.add('city-span' + i, 'padding');
     citySpan.textContent = arr[i].name;
+    citySpan.addEventListener('click', function() {
+      choiceCityFormInput.value = citySpan.textContent;
+      deletionProposedListOfCities();
+    });
     proposedListOfCities.appendChild(citySpan);
   }
 
