@@ -93,13 +93,20 @@ const deletionResultsContainer = () => {
 const getCityNames = () => {
   
   const urlCity = 'http://api.apixu.com/v1/search.json?key=502e6d2bb7fc49b7b55164834192904&q=';
+  let citiesList
 
   const req = new XMLHttpRequest();
-  req.open('GET', `${urlCity}` + choiceCityFormInput.value, false);
+  req.open('GET', `${urlCity}` + choiceCityFormInput.value);
+  req.onload = () => {
+    citiesList = JSON.parse(req.response);
+
+    showProposedListOfCities(createProposedListOfCities(citiesList));
+
+  };
+
   req.send();
-  let citiesList = JSON.parse(req.response);
   
-  return citiesList;
+  
 
 };
 
@@ -153,7 +160,7 @@ choiceCityForm.addEventListener('submit', e => {
 choiceCityFormInput.addEventListener('keyup' , function() {
   
   deletionProposedListOfCities();
-  showProposedListOfCities(createProposedListOfCities(getCityNames()));
+  getCityNames();
   
 });
 
