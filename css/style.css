@@ -60,7 +60,7 @@ body {
   width: 210px;
   height: 28px;
   border-radius: 7px;
-  background-color: #cff7ff87;
+  background-color: #73daf1d4;
   font-size: 20px;
   color: #304246;
   
@@ -88,4 +88,9 @@ body {
 
 .padding {
   padding: 5px;
+  cursor: pointer;
+}
+
+.padding:hover {
+  background-color: #53a3b5d4;
 }
