@@ -137,13 +137,12 @@ const createProposedListOfCities = arr => {
 
 const deletionProposedListOfCities = () => {
 
-  try {
-    document.querySelector('.proposed-list-of-cities__container').remove();
-    document.querySelector('.proposed-list-of-cities__container').remove();
-  } catch {
+  const deleteCount = document.querySelectorAll('.proposed-list-of-cities__container').length;
 
+  for(let i = 0; i < deleteCount; i++) {
+    document.querySelector('.proposed-list-of-cities__container').remove();
   };
-
+    
 };
 
 const showProposedListOfCities = element => {
@@ -173,7 +172,7 @@ choiceCityForm.addEventListener('submit', e => {
 
 });
 
-choiceCityFormInput.addEventListener('keyup' , () => {
+choiceCityFormInput.addEventListener('keydown' , () => {
   
   deletionProposedListOfCities();
 
