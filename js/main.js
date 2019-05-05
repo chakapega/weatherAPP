@@ -15,10 +15,14 @@ const getWeather = () => {
   req.onload = () => {
 
     allDataWeather = JSON.parse(req.response);
-
-    deletionResultsContainer();
-    showResults(createElemForResults());
     
+    if(allDataWeather.location) {
+      deletionResultsContainer();
+      showResults(createElemForResults());
+    } else if(allDataWeather.error) {
+      alert(allDataWeather.error.message);
+    };
+
   };
 
   req.send();
@@ -100,9 +104,11 @@ const getCityNames = () => {
   req.open('GET', `${urlCity}` + choiceCityFormInput.value);
   req.onload = () => {
     citiesList = JSON.parse(req.response);
-
-    showProposedListOfCities(createProposedListOfCities(citiesList));
-
+    
+    if(citiesList.length > 0) {
+      showProposedListOfCities(createProposedListOfCities(citiesList));
+    };
+    
   };
 
   req.send();
