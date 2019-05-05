@@ -6,28 +6,25 @@ let allDataWeather;
 const choiceCityFormInput = document.querySelector('#choice-city-form__input');
 const main = document.querySelector('main');
 const clearButton = document.querySelector('.clear-button');
+let citiesList;
 
 const getWeather = () => {
 
-  const req = new XMLHttpRequest();
+  return new Promise(resolve => {
 
-  req.open('GET', `${URL}` + city);
-  req.onload = () => {
+    const req = new XMLHttpRequest();
 
-    allDataWeather = JSON.parse(req.response);
+    req.open('GET', `${URL}` + city);
+    req.onload = () => {
+  
+      resolve(allDataWeather = JSON.parse(req.response));
+      
+    };
     
-    if(allDataWeather.location) {
-      deletionResultsContainer();
-      showResults(createElemForResults());
-    } else if(allDataWeather.error) {
-      alert(allDataWeather.error.message);
-    } else {
-      alert('Error!');
-    }
+    req.send();
 
-  };
+  });
 
-  req.send();
 
 };
 
@@ -99,21 +96,23 @@ const deletionResultsContainer = () => {
 
 const getCityNames = () => {
   
-  const urlCity = 'http://api.apixu.com/v1/search.json?key=502e6d2bb7fc49b7b55164834192904&q=';
-  let citiesList;
+  return new Promise((resolve) => {
 
-  const req = new XMLHttpRequest();
-  req.open('GET', `${urlCity}` + choiceCityFormInput.value);
-  req.onload = () => {
-    citiesList = JSON.parse(req.response);
-    
-    if(citiesList.length > 0) {
-      showProposedListOfCities(createProposedListOfCities(citiesList));
+    const urlCity = 'http://api.apixu.com/v1/search.json?key=502e6d2bb7fc49b7b55164834192904&q=';
+  
+    const req = new XMLHttpRequest();
+    req.open('GET', `${urlCity}` + choiceCityFormInput.value);
+    req.onload = () => {
+      
+      resolve(citiesList = JSON.parse(req.response));
+      
     };
-    
-  };
+  
+    req.send();
 
-  req.send();
+  });
+
+
   
 };
 
@@ -161,7 +160,18 @@ choiceCityForm.addEventListener('submit', e => {
 
   city = e.target['choice-city-form__input'].value;
   
-  getWeather();
+  getWeather().then(() => {
+
+    if(allDataWeather.location) {
+      deletionResultsContainer();
+      showResults(createElemForResults());
+    } else if(allDataWeather.error) {
+      alert(allDataWeather.error.message);
+    } else {
+      alert('Error!');
+    };
+
+  });
 
 });
 
@@ -169,8 +179,14 @@ choiceCityFormInput.addEventListener('keyup' , () => {
   
   deletionProposedListOfCities();
 
-  if(choiceCityFormInput.value.length >= 3) {
-    getCityNames();
+  if(choiceCityFormInput.value.length > 2) {
+    getCityNames().then(() => {
+
+      if(citiesList.length > 0) {
+        showProposedListOfCities(createProposedListOfCities(citiesList));
+      };
+
+    });
   };
   
 });
