@@ -25,7 +25,6 @@ const getWeather = () => {
 
   });
 
-
 };
 
 const showResults = element => {
@@ -112,8 +111,6 @@ const getCityNames = () => {
 
   });
 
-
-  
 };
 
 const createProposedListOfCities = arr => {
@@ -121,15 +118,16 @@ const createProposedListOfCities = arr => {
   const proposedListOfCities = document.createElement('div');
 
   proposedListOfCities.classList.add('proposed-list-of-cities__container');
+  proposedListOfCities.addEventListener('click', e => {
+
+    choiceCityFormInput.value = e.target.textContent;
+
+  });
 
   for(let i = 0; i < arr.length; i++) {
     const citySpan = document.createElement('span');
     citySpan.classList.add('city-span' + i, 'padding');
     citySpan.textContent = arr[i].name;
-    citySpan.addEventListener('click', function() {
-      choiceCityFormInput.value = citySpan.textContent;
-      deletionProposedListOfCities();
-    });
     proposedListOfCities.appendChild(citySpan);
   };
 
