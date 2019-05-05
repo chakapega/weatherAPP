@@ -108,3 +108,12 @@ body {
 .padding:hover {
   background-color: #53a3b5d4;
 }
+
+@media screen and (max-width: 1169px) {
+  
+  .results__container {
+    top: 45%;
+    left: 16%;
+  }
+  
+}

@@ -21,7 +21,9 @@ const getWeather = () => {
       showResults(createElemForResults());
     } else if(allDataWeather.error) {
       alert(allDataWeather.error.message);
-    };
+    } else {
+      alert('Error!');
+    }
 
   };
 
@@ -140,6 +142,7 @@ const deletionProposedListOfCities = () => {
 
   try {
     document.querySelector('.proposed-list-of-cities__container').remove();
+    document.querySelector('.proposed-list-of-cities__container').remove();
   } catch {
 
   };
@@ -162,7 +165,7 @@ choiceCityForm.addEventListener('submit', e => {
 
 });
 
-choiceCityFormInput.addEventListener('keyup' , function() {
+choiceCityFormInput.addEventListener('keyup' , () => {
   
   deletionProposedListOfCities();
 
@@ -172,13 +175,13 @@ choiceCityFormInput.addEventListener('keyup' , function() {
   
 });
 
-choiceCityFormInput.addEventListener('blur' , function() {
+choiceCityFormInput.addEventListener('blur' , () => {
   
   setTimeout(deletionProposedListOfCities, 200);
   
 });
 
-clearButton.addEventListener('click', function() {
+clearButton.addEventListener('click', () => {
 
   deletionProposedListOfCities();
   deletionResultsContainer();
