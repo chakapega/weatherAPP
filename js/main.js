@@ -1,8 +1,6 @@
-const URL = 'http://api.apixu.com/v1/current.json?key=502e6d2bb7fc49b7b55164834192904&q=';
 const choiceCityForm = document.querySelector('.choice-city-form');
 const buttonShowWeather = document.querySelector('.choice-city-form__button');
 let city;
-let allDataWeather;
 const choiceCityFormInput = document.querySelector('#choice-city-form__input');
 const main = document.querySelector('main');
 const clearButton = document.querySelector('.clear-button');
@@ -10,17 +8,26 @@ let citiesList;
 
 const getWeather = () => {
 
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
 
+    const URL = 'http://api.apixu.com/v1/current.json?key=502e6d2bb7fc49b7b55164834192904&q=';
     const req = new XMLHttpRequest();
 
     req.open('GET', `${URL}` + city);
     req.onload = () => {
   
-      resolve(allDataWeather = JSON.parse(req.response));
+      let allDataWeather = JSON.parse(req.response);
+      
+      if(req.status === 200) {
+        resolve(allDataWeather);
+      } else if(req.status === 400) {
+        reject(allDataWeather);
+      } else{
+        alert('Error!')
+      };
       
     };
-    
+
     req.send();
 
   });
@@ -33,7 +40,7 @@ const showResults = element => {
 
 };
 
-const createElemForResults = () => {
+const createElemForResults = allDataWeather => {
 
   const resultsContainer = document.createElement('div');
   const location = document.createElement('span');
@@ -157,18 +164,15 @@ choiceCityForm.addEventListener('submit', e => {
 
   city = e.target['choice-city-form__input'].value;
   
-  getWeather().then(() => {
-
-    if(allDataWeather.location) {
-      deletionResultsContainer();
-      showResults(createElemForResults());
-    } else if(allDataWeather.error) {
-      alert(allDataWeather.error.message);
-    } else {
-      alert('Error!');
-    };
-
-  });
+  getWeather()
+    .then(
+      allDataWeather => {
+        deletionResultsContainer();
+        showResults(createElemForResults(allDataWeather));   
+      },
+      allDataWeather => {
+        alert(allDataWeather.error.message);
+      });
 
 });
 
