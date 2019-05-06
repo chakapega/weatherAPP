@@ -1,12 +1,9 @@
 const choiceCityForm = document.querySelector('.choice-city-form');
-const buttonShowWeather = document.querySelector('.choice-city-form__button');
-let city;
 const choiceCityFormInput = document.querySelector('#choice-city-form__input');
 const main = document.querySelector('main');
 const clearButton = document.querySelector('.clear-button');
-let citiesList;
 
-const getWeather = () => {
+const getWeather = city => {
 
   return new Promise((resolve, reject) => {
 
@@ -92,25 +89,24 @@ const createElemForResults = allDataWeather => {
 
 const deletionResultsContainer = () => {
 
-  try {
+  if(document.querySelector('.results__container')) {
     document.querySelector('.results__container').remove();
-  } catch {
-
   };
-
+    
 };
 
 const getCityNames = () => {
   
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
 
     const urlCity = 'http://api.apixu.com/v1/search.json?key=502e6d2bb7fc49b7b55164834192904&q=';
-  
     const req = new XMLHttpRequest();
+
     req.open('GET', `${urlCity}` + choiceCityFormInput.value);
     req.onload = () => {
-      
-      resolve(citiesList = JSON.parse(req.response));
+
+      let citiesList = JSON.parse(req.response);
+      resolve(citiesList);
       
     };
   
@@ -162,9 +158,9 @@ choiceCityForm.addEventListener('submit', e => {
   
   e.preventDefault();
 
-  city = e.target['choice-city-form__input'].value;
+  const city = e.target['choice-city-form__input'].value;
   
-  getWeather()
+  getWeather(city)
     .then(
       allDataWeather => {
         deletionResultsContainer();
@@ -176,18 +172,21 @@ choiceCityForm.addEventListener('submit', e => {
 
 });
 
-choiceCityFormInput.addEventListener('keydown' , () => {
-  
+choiceCityFormInput.addEventListener('keyup' , () => {
+
   deletionProposedListOfCities();
 
   if(choiceCityFormInput.value.length > 2) {
-    getCityNames().then(() => {
+    getCityNames()
+      .then(
+        citiesList => {
 
-      if(citiesList.length > 0) {
-        showProposedListOfCities(createProposedListOfCities(citiesList));
-      };
+          if(citiesList.length > 0) {
+            showProposedListOfCities(createProposedListOfCities(citiesList));
+          };
 
-    });
+        });
+
   };
   
 });
