@@ -25,6 +25,10 @@ const getWeather = city => {
       
     };
 
+    req.onerror = () => {
+      alert('No connection to the server or the server is not responding');
+    };
+
     req.send();
 
   });
