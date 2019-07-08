@@ -26,6 +26,7 @@ body {
   width: 150px;
   height: 40px;
   font-size: 18px;
+  outline: none;
 }
 
 .btn {
@@ -39,6 +40,7 @@ body {
   left: 550px;
   top: 263px;
   font-size: 15px;
+  outline: none;
 }
 
 .clear-button:active {
@@ -77,7 +79,7 @@ body {
   background-color: #73daf1d4;
   font-size: 20px;
   color: #304246;
-  
+  outline: none;
 }
 
 .condition {
