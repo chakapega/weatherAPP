@@ -16,8 +16,8 @@ body {
   justify-content: space-around;
   align-items: center;
   position: absolute;
-  top: 29%;
-  left: 19%;
+  top: 200px;
+  left: 280px;
   color: #304246;
   font-size: 30px;
 }
@@ -25,10 +25,26 @@ body {
 .choice-city-form__button {
   width: 150px;
   height: 40px;
-  border-radius: 7px;
   font-size: 18px;
+  outline: none;
+}
+
+.btn {
   background-color: #f3bfb1;
   color: #304246;
+  border-radius: 7px;
+}
+
+.clear-button {
+  position: absolute;
+  left: 550px;
+  top: 263px;
+  font-size: 15px;
+  outline: none;
+}
+
+.clear-button:active {
+  font-size: 14px;
 }
 
 .choice-city-form__button:active {
@@ -60,9 +76,10 @@ body {
   width: 210px;
   height: 28px;
   border-radius: 7px;
-  background-color: #b5f2ff;
+  background-color: #73daf1d4;
   font-size: 20px;
   color: #304246;
+  outline: none;
 }
 
 .condition {
@@ -70,4 +87,35 @@ body {
   justify-content: space-around;
   width: 250px;
   align-items: center;
+}
+
+.proposed-list-of-cities__container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 295px;
+  left: 325px;
+  background-color: #73daf1d4;
+  font-size: 23px;
+  color: #304246;
+  height: 250px;
+  overflow: scroll;
+}
+
+.padding {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.padding:hover {
+  background-color: #53a3b5d4;
+}
+
+@media screen and (max-width: 1169px) {
+  
+  .results__container {
+    top: 45%;
+    left: 16%;
+  }
+  
 }
