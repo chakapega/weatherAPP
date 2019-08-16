@@ -4,6 +4,7 @@ body {
   padding: 0;
   background-image: url(../images/miui-8-2560x1440-weather-background-minimal-hd-10470.png);
   background-size: cover;
+  background-repeat: repeat-y;
 }
 .choice-city-form {
   display: flex;
@@ -23,6 +24,7 @@ body {
   height: 40px;
   font-size: 18px;
   outline: none;
+  cursor: pointer;
 }
 .btn {
   background-color: #f3bfb1;
@@ -35,6 +37,7 @@ body {
   top: 263px;
   font-size: 15px;
   outline: none;
+  cursor: pointer;
 }
 .clear-button:active {
   font-size: 14px;

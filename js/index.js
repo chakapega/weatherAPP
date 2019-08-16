@@ -32,9 +32,10 @@ const showResults = element => {
   mainContainer.appendChild(element);
 };
 
-const createElemForResults = allDataWeather => {
+const createElementsForResults = allDataWeather => {
   const resultsContainer = document.createElement('div');
   const location = document.createElement('span');
+  const locationTime = document.createElement('span');
   const condition = document.createElement('div');
   const conditionImg = document.createElement('img');
   const conditionText = document.createElement('span');
@@ -47,6 +48,9 @@ const createElemForResults = allDataWeather => {
 
   location.classList.add('location');
   location.textContent = allDataWeather.location.country + ' / ' + allDataWeather.location.name;
+
+  locationTime.classList.add('location-time');
+  locationTime.textContent = allDataWeather.location.localtime;
 
   condition.classList.add('condition');
   
@@ -69,6 +73,7 @@ const createElemForResults = allDataWeather => {
   temperature.textContent = 'Temperature: ' + allDataWeather.current.temp_c + ' °c';
 
   resultsContainer.appendChild(location);
+  resultsContainer.appendChild(locationTime);
   condition.appendChild(conditionImg);
   condition.appendChild(conditionText);
   resultsContainer.appendChild(condition);
@@ -127,7 +132,9 @@ const deletionProposedListOfCities = () => {
 };
 
 const showProposedListOfCities = element => {
-  mainContainer.appendChild(element);
+  if (!document.querySelector('.proposed-list-of-cities__container')) {
+    mainContainer.appendChild(element);
+  };
 };
 
 choiceCityForm.addEventListener('submit', e => {
@@ -139,7 +146,7 @@ choiceCityForm.addEventListener('submit', e => {
     .then(
       allDataWeather => {
         deletionResultsContainer();
-        showResults(createElemForResults(allDataWeather));   
+        showResults(createElementsForResults(allDataWeather));   
       },
       allDataWeather => {
         alert(allDataWeather.error.message);
@@ -148,16 +155,14 @@ choiceCityForm.addEventListener('submit', e => {
 
 choiceCityFormInput.addEventListener('keyup' , () => {
   deletionProposedListOfCities();
-
-  if(choiceCityFormInput.value.length > 2) {
-    getCityNames()
-      .then(
-        citiesList => {
-          if(citiesList.length > 0) {
-            showProposedListOfCities(createProposedListOfCities(citiesList));
-          };
-        });
-  };
+  
+  getCityNames()
+    .then(
+      citiesList => {
+        if(citiesList.length > 0) {
+          showProposedListOfCities(createProposedListOfCities(citiesList));
+        };
+      });
 });
 
 choiceCityFormInput.addEventListener('blur' , () => {
