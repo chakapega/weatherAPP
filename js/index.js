@@ -1,35 +1,35 @@
 const choiceCityForm = document.querySelector('.choice-city-form');
 const choiceCityFormInput = document.querySelector('#choice-city-form__input');
-const main = document.querySelector('main');
+const mainContainer = document.querySelector('.main_container');
 const clearButton = document.querySelector('.clear-button');
 
 const getWeather = city => {
   return new Promise((resolve, reject) => {
 
     const URL = 'http://api.apixu.com/v1/current.json?key=502e6d2bb7fc49b7b55164834192904&q=';
-    const req = new XMLHttpRequest();
+    const request = new XMLHttpRequest(); 
 
-    req.open('GET', `${URL}` + city);
-    req.onload = () => {
-      let allDataWeather = JSON.parse(req.response);
+    request.open('GET', `${URL}` + city);
+    request.onload = () => {
+      const allDataWeather = JSON.parse(request.response);
       
-      if(req.status === 200) {
+      if (request.status === 200) {
         resolve(allDataWeather);
-      } else if(req.status === 400) {
+      } else if (request.status === 400) {
         reject(allDataWeather);
-      } else{
+      } else {
         alert('Error!');
       };
     };
-    req.onerror = () => {
+    request.onerror = () => {
       alert('No connection to the server or the server is not responding');
     };
-    req.send();
+    request.send();
   });
 };
 
 const showResults = element => {
-  main.appendChild(element);
+  mainContainer.appendChild(element);
 };
 
 const createElemForResults = allDataWeather => {
@@ -127,7 +127,7 @@ const deletionProposedListOfCities = () => {
 };
 
 const showProposedListOfCities = element => {
-  main.appendChild(element);
+  mainContainer.appendChild(element);
 };
 
 choiceCityForm.addEventListener('submit', e => {
@@ -169,7 +169,3 @@ clearButton.addEventListener('click', () => {
   deletionResultsContainer();
   choiceCityFormInput.value = "";
 });
-
-
-
-
