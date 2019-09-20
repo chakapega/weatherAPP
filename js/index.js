@@ -93,7 +93,7 @@ const deletionResultsContainer = () => {
 
 const getCityNames = () => {
   return new Promise(resolve => {
-    const urlCity = 'http://api.apixu.com/v1/search.json?key=502e6d2bb7fc49b7b55164834192904&q=';
+    const urlCity = 'https://api.apixu.com/v1/search.json?key=502e6d2bb7fc49b7b55164834192904&q=';
     const req = new XMLHttpRequest();
 
     req.open('GET', `${urlCity}` + choiceCityFormInput.value);
