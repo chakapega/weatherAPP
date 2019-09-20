@@ -6,7 +6,7 @@ const clearButton = document.querySelector('.clear-button');
 const getWeather = city => {
   return new Promise((resolve, reject) => {
 
-    const URL = 'http://api.apixu.com/v1/current.json?key=502e6d2bb7fc49b7b55164834192904&q=';
+    const URL = 'https://api.apixu.com/v1/current.json?key=502e6d2bb7fc49b7b55164834192904&q=';
     const request = new XMLHttpRequest(); 
 
     request.open('GET', `${URL}` + city);
